@@ -1,0 +1,17 @@
+# Android Hacking Scripts
+
+This repository contains scripts for hacking an Android device remotely.
+
+## Prerequisites
+
+- Kali Linux operating system
+- Android device with USB debugging enabled
+- Python 3 and pip installed
+- adb (Android Debug Bridge) installed
+- metasploit-framework installed
+- jq installed
+- ipinfo library installed
+
+## Setup
+
+1. Clone the repository:
