@@ -30,9 +30,13 @@ get_device_info() {
 }
 
 # Main script execution
-read -p "Enter the target Android device IP address, 'phishing', or 'phone': " input
+read -p "Enter the target Android device method (ip, phishing, phone): " input
 
-if [[ $input == "phishing" ]]; then
+if [[ $input == "ip" ]]; then
+    # Establish a connection to the Android device using an IP address
+    read -p "Enter the target Android device IP address: " ip_address
+    adb connect $ip_address
+elif [[ $input == "phishing" ]]; then
     # Establish a connection to the Android device using a phishing link
     read -p "Enter the phishing link to connect to the Android device: " link
     adb connect $link
@@ -40,11 +44,8 @@ elif [[ $input == "phone" ]]; then
     # Establish a connection to the Android device using a phone number
     read -p "Enter the phone number to connect to the Android device: " phone_number
     adb connect $phone_number
-elif [[ $input =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    # Establish a connection to the Android device using the IP address
-    adb connect $input
 else
-    echo "Invalid input. Please enter either an IP address, 'phishing', or 'phone'."
+    echo "Invalid input. Please enter either 'ip', 'phishing', or 'phone'."
     exit 1
 fi
 
